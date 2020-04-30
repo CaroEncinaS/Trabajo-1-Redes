@@ -1,6 +1,7 @@
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 /*
@@ -16,6 +17,7 @@ import javax.ws.rs.QueryParam;
 
 public class verificarut {
     @GET
+    @Produces("application/json")
     public String verificar(@QueryParam("rut") String Rut) {
        int intRut;
        String newRut="";
@@ -72,6 +74,3 @@ public class verificarut {
        }
     }
 }
-
-
-

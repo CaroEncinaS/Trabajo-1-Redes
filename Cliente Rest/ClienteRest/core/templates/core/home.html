@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="POST">
+    {% csrf_token %}
+        <p>Ingrese rut: <input type="text" name="rut"></p>
+        <p>Nombre: <input type="text" name="nombre"></p>
+        <input type="submit" value="Submit">
+    </form>
+    {% if rutvalido == "true" %}
+        <h1>El rut ingresado es valido</h1>
+    {% elif rutvalido == "false" %}
+        <h1>El rut ingresado es invalido</h1>
+    {% endif %}
+    
+</body>
+</html>
