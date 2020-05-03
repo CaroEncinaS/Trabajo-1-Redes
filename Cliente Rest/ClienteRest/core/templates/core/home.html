@@ -12,6 +12,7 @@
         <p>Nombre: <input type="text" name="nombre"></p>
         <input type="submit" value="Submit">
     </form>
+    <p>{{rutvalido}}</p>
     {% if rutvalido == "true" %}
         <h1>El rut ingresado es valido</h1>
     {% elif rutvalido == "false" %}

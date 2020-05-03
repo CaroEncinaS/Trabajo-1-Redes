@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-import requests
+import requests, urllib
 import json
 
 # Create your views here.
@@ -7,11 +7,13 @@ import json
 def home(request):
     informacion=request.POST.get('rut')
     rut=str(informacion)
-    response= requests.get('http://localhost:8080/Servicio_web_Redes/app/verificarut?rut='+rut)
+    response= requests.get('http://localhost:8080/mavenproject1/app/verificarut?rut='+rut)
     if response.status_code==200:
-        print(response.content)
+        data= response.json()
+        print(data[0]['valido'])
+        print(response)
         return render(request, "core/home.html",{
-            'rutvalido':response.text,
+            'rutvalido':data[0]['valido'],
         })
     else:
         return render(request, "core/home.html")

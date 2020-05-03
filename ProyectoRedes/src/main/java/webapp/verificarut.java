@@ -1,11 +1,12 @@
-import ModeloRespuesta.RespuestaServicio;
+package webapp;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.Consumes;
-import javax.xml.ws.Response;
+import javax.ws.rs.core.Response;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -70,16 +71,19 @@ public class verificarut {
            dv = Integer.toString(digitoverificador);
        }
        newDv=newDv.toLowerCase();
-       RespuestaServicio respuesta = new RespuestaServicio();
+        //RespuestaServicio respuesta = new RespuestaServicio();
+        //String val = "false";
        if(dv.equals(newDv)){
+           //val="true";
            char[] cadena = {'[','{','"','v','a','l','i','d','o','"',':','"','t','r','u','e','"','}',']'};
            String result = new String(cadena);
-           return Response.ok(result).build();;
+           return Response.ok(result).build();
        }
        else{
+           //val="false";
            char[] cadena = {'[','{','"','v','a','l','i','d','o','"',':','"','f','a','l','s','e','"','}',']'};
            String result = new String(cadena);
-           return result;
+           return Response.ok(result).build();
        } 
     }
 }
