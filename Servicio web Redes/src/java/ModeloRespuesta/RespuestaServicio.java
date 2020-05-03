@@ -11,11 +11,8 @@ package ModeloRespuesta;
  * @author carol
  */
 public class RespuestaServicio {
-    private String valido = "false"; 
-    private String rut;
-    public String getrut(){
-        return rut;
-    }
+    private String valido;
+    
 
     public String getValor() {
         return valido;

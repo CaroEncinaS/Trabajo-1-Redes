@@ -1,8 +1,10 @@
-
+import ModeloRespuesta.RespuestaServicio;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.Consumes;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,7 +19,8 @@ import javax.ws.rs.QueryParam;
 
 public class verificarut {
     @GET
-    @Produces("application/json")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public String verificar(@QueryParam("rut") String Rut) {
        int intRut;
        String newRut="";
@@ -66,11 +69,16 @@ public class verificarut {
            dv = Integer.toString(digitoverificador);
        }
        newDv=newDv.toLowerCase();
+       RespuestaServicio respuesta = new RespuestaServicio();
        if(dv.equals(newDv)){
-           return "true";
+           char[] cadena = {'[','{','"','v','a','l','i','d','o','"',':','"','t','r','u','e','"','}',']'};
+           String result = new String(cadena);
+           return result;
        }
        else{
-           return "false";
-       }
+           char[] cadena = {'[','{','"','v','a','l','i','d','o','"',':','"','f','a','l','s','e','"','}',']'};
+           String result = new String(cadena);
+           return result;
+       } 
     }
 }
