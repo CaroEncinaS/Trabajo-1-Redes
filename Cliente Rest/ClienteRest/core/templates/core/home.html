@@ -42,15 +42,15 @@ function checkRut(rut) {
     
     <form action="" method="POST">
         {% csrf_token %}
-        <p>Nombres: <input type="text" name="nombres" id='nombres' placeholder="Ingrese Nombres"></p>
-        <p>Apellido Paterno: <input type="text" name="ApellidoP" id='ApellidoP' placeholder="Ingrese Apellido Paterno"></p>
-        <p>Apellido Materno: <input type="text" name="ApellidoM" id='ApellidoM' placeholder="Ingrese Apellido Materno"></p>
+        <p>Nombres: <input type="text" name="nombres" id='nombres' placeholder="Ingrese Nombres" required></p>
+        <p>Apellido Paterno: <input type="text" name="apellidop" id='apellidop' placeholder="Ingrese Apellido Paterno" required></p>
+        <p>Apellido Materno: <input type="text" name="apellidom" id='apellidom' placeholder="Ingrese Apellido Materno" required></p>
         <p>Sexo:<select id="sexo" name="sexo"><option value="M">Masculino</option><option value="F">Femenino</option></select></p>
         <input type="submit" value="Submit">
     
     </form>
     {% if saludo %}
-    <h1>{{saludo}}{{nombre}}</h1>
+    <h1>{{saludo}}</h1>
     {% endif %}
 </body>
 </html>
