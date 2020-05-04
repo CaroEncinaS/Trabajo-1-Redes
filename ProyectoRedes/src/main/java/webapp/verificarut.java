@@ -7,6 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.Response;
+import modelo.PersonaDato;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,9 +18,10 @@ import javax.ws.rs.core.Response;
  *
  * @author carol
  */
-@Path("verificarut")
+@Path("rest")
 
 public class verificarut {
+    @Path("verificarut")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -85,5 +87,47 @@ public class verificarut {
            String result = new String(cadena);
            return Response.ok(result).build();
        } 
+    }
+    @Path("saludo")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response saludo(@QueryParam("nombres") String nombres, @QueryParam("apellidop") String apellido1, @QueryParam("apellidom") String apellido2, @QueryParam("sexo") String sexo){
+        PersonaDato result = new PersonaDato();
+
+        nombres = nombres.toLowerCase();
+        apellido1 = apellido1.toLowerCase();
+        apellido2 = apellido2.toLowerCase();
+
+        apellido1 = apellido1.replace(" ","");
+        apellido2 = apellido2.replace(" ","");
+
+        char[] charName = nombres.toCharArray();
+        char[] charLastName1 = apellido1.toCharArray();
+        char[] charLastName2 = apellido2.toCharArray();
+
+        charLastName1[0] = Character.toUpperCase(charLastName1[0]);
+        charLastName2[0] = Character.toUpperCase(charLastName2[0]);
+
+        if(charName[0]!=' '){
+            charName[0] = Character.toUpperCase(charName[0]);
+        }
+
+        for(int i = 1; i < nombres.length() -1 ; i++){
+            if(charName[i-1]== ' ' && charName[i] != ' '){
+                charName[i] = Character.toUpperCase(charName[i]);
+            }
+        }
+
+        result.nombre = new String(charName)+" "+ new String(charLastName1)+" "+ new String(charLastName2);
+
+        if(sexo == "M"){
+            result.saludo = "Sr. ";
+        }
+        else if(sexo == "F"){
+            result.saludo = "Sra. ";
+        }
+
+        return Response.ok(result).build();
     }
 }

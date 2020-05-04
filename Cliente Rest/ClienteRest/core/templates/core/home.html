@@ -41,6 +41,7 @@ function checkRut(rut) {
     {% endif %}
     
     <form action="" method="POST">
+        {% csrf_token %}
         <p>Nombres: <input type="text" name="nombres" id='nombres' placeholder="Ingrese Nombres"></p>
         <p>Apellido Paterno: <input type="text" name="ApellidoP" id='ApellidoP' placeholder="Ingrese Apellido Paterno"></p>
         <p>Apellido Materno: <input type="text" name="ApellidoM" id='ApellidoM' placeholder="Ingrese Apellido Materno"></p>
@@ -48,5 +49,8 @@ function checkRut(rut) {
         <input type="submit" value="Submit">
     
     </form>
+    {% if saludo %}
+    <h1>{{saludo}}{{nombre}}</h1>
+    {% endif %}
 </body>
 </html>
