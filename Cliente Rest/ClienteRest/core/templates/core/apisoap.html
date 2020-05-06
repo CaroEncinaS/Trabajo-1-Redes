@@ -1,6 +1,6 @@
 {% extends 'core/home.html' %}
 
-{% block title %}Aplicación Rest{% endblock title %}
+{% block title %}Aplicación Soap{% endblock title %}
 {% block content %}
 <script>
 function checkRut(rut) {
@@ -23,16 +23,16 @@ function checkRut(rut) {
     rut.setCustomValidity('');
 }
 </script>
-<h1>Aplicación Rest</h1>
+<h1>Aplicación Soap</h1>
     <form action="" method="POST">
     {% csrf_token %}
         <p>Ingrese rut: <input type="text" name="rut" id='rut' required oninput="checkRut(this)" placeholder="Ingrese Rut"></p>
         <input type="submit" value="Enviar">
     </form>
-    {% if rutvalido == "true" %}
-        <h1>El rut ingresado es valido</h1>
-    {% elif rutvalido == "false" %}
-        <h1>El rut ingresado es invalido</h1>
+    {% if rutvalido == True %}
+        <h1>El rut ingresado es válido</h1>
+    {% elif rutvalido == False %}
+        <h1>El rut ingresado es inválido</h1>
     {% endif %}
     
     <form action="" method="POST">

@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse
 import requests, urllib, json
+from zeep import Client
 
 # Create your views here.
 
@@ -35,4 +36,40 @@ def RestClient(request):
         return render(request, "core/restapi.html")
 
 def SoapClient(request):
-    return render(request, "core/restapi.html")
+    if request.POST.get('rut'):
+        informacion=request.POST.get('rut')
+        rut=str(informacion)
+        client= Client('http://localhost:59955/Service.asmx?wsdl')
+        response_content=response=client.service.Verificacion(rut)
+        with client.settings(raw_response=True):
+            response=client.service.Verificacion(rut)
+            assert response.status_code==200
+            assert response.content
+        if (response.status_code==200):
+            return render(request, "core/apisoap.html",{
+                'rutvalido':response_content,
+            })
+        else:
+            return render(request, "core/apisoap.html")
+    
+    elif request.POST.get('nombres'):
+        nombres=str(request.POST.get('nombres'))
+        apellidopat=str(request.POST.get('apellidop'))
+        apellidomat=str(request.POST.get('apellidom'))
+        sexo=str(request.POST.get('sexo'))
+        client= Client('http://localhost:59955/Service.asmx?wsdl')
+        response_content= client.service.Saludos(apellidopat,apellidomat,nombres,sexo)
+        with client.settings(raw_response=True):
+            response=client.service.Saludos(apellidopat,apellidomat,nombres,sexo)
+            assert response.status_code==200
+            assert response.content
+        if(response.status_code==200):  
+            print(response_content)
+            return render(request, "core/apisoap.html",{
+                'saludo':response_content
+            })
+        else:
+            return render(request, "core/apisoap.html")
+
+    else:
+        return render(request, "core/apisoap.html")
