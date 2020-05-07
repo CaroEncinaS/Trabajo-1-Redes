@@ -12,6 +12,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import modelo.PersonaDato;
+import java.time.LocalTime;
 
 /**
  *
@@ -24,6 +25,7 @@ public class saludo {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response saludo(@QueryParam("nombres") String nombres, @QueryParam("apellidop") String apellido1, @QueryParam("apellidom") String apellido2, @QueryParam("sexo") String sexo){
         PersonaDato result = new PersonaDato();
+        LocalTime hora=LocalTime.now();
 
         nombres = nombres.toLowerCase();
         apellido1 = apellido1.toLowerCase();
@@ -57,31 +59,19 @@ public class saludo {
         else if(sexo.equals("F")){
             result.saludo="Sra. ";
         }
-        String saludoFinal = result.saludo + result.nombre;
-        char[] saludoFinalChar = saludoFinal.toCharArray();
-
-        char[] finalresult= new char[saludoFinal.length()+15];
-        finalresult[0]='[';
-        finalresult[1]='{';
-        finalresult[2]='"';
-        finalresult[3]='s';
-        finalresult[4]='a';
-        finalresult[5]='l';
-        finalresult[6]='u';
-        finalresult[7]='d';
-        finalresult[8]='o';
-        finalresult[9]='"';
-        finalresult[10]=':';
-        finalresult[11] = '"';
-        for(int i=12,j=0; j<saludoFinal.length();i++,j++){
-            finalresult[i] = saludoFinalChar[j];
-            if(j+1 == saludoFinal.length()){
-                finalresult[i+1] = '"';
-                finalresult[i+2] = '}';
-                finalresult[i+3] = ']';
-            }
+        String dias;
+        if(hora.getHour()-1>=12&&hora.getHour()-1<20){
+            dias = "Buenas tardes ";
         }
-        String saludofinal=new String(finalresult);
-        return Response.ok(saludofinal).build() ;
+        else if(hora.getHour()-1>=6&&hora.getHour()-1<12){
+            dias = "Buenos días ";
+        }
+        else{
+            dias = "Buenas noches ";
+        }
+        String saludoFinal = dias + result.saludo + result.nombre;
+        char pyc='"';
+        String finalresult = "[{"+Character.toString(pyc)+"saludo"+Character.toString(pyc)+":"+Character.toString(pyc)+saludoFinal+Character.toString(pyc)+"}]";
+        return Response.ok(finalresult).build() ;
     }
 }
