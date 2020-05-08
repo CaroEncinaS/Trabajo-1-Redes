@@ -1,5 +1,22 @@
 # Trabajo-1-Redes
-Web service REST
+WebService REST
+
+[Instalación del Web Service]
+
+1.- Instalar NetBeans IDE 8.2
+2.- Instalar glassfish 4.1.1
+3.- Usar Maven 3.6.3 
+
+Webservices SOAP
+
+[Instalación y ejecución del Web Service]
+
+1.-Instalar Visual Studio Version 2015
+2.-Ejecutar Visual Studio , diriguirse a File, Open ,Website.
+3.-Seleccionar la carpeta que contiene el webservices
+4.-Seleccionar la carpeta App_Code, Service.cs
+
+Cliente
 
 [Instalación y ejecución de Cliente Django (Python)]
 
