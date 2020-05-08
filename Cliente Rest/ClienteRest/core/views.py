@@ -57,7 +57,7 @@ def SoapClient(request):
         apellidopat=str(request.POST.get('apellidop'))
         apellidomat=str(request.POST.get('apellidom'))
         sexo=str(request.POST.get('sexo'))
-        client= Client('http://localhost:59955/Service.asmx?wsdl')
+        client= Client('http://localhost:64786/Service.asmx?wsdl')
         response_content= client.service.Saludos(apellidopat,apellidomat,nombres,sexo)
         with client.settings(raw_response=True):
             response=client.service.Saludos(apellidopat,apellidomat,nombres,sexo)
