@@ -122,8 +122,9 @@ public class Service : System.Web.Services.WebService
         nbs = nbs.ToLower();
         genero = genero.ToUpper();
         string h = "Saludos Sr:";
-        string m = "Saludos Sra ";
+        string m = "Saludos Sra: ";
         string a = "ERROR faltan campos";
+        string c = "Nombre muy largo";
         if (ap != "" && am != "" && nbs != "" && genero != "")
         {
             if (genero == "F" || genero == "MUJER" || genero == "FEMENINO")
@@ -132,19 +133,47 @@ public class Service : System.Web.Services.WebService
                 ap = ap.Substring(1, ap.Length - 1);
                 string am1 = am.Substring(0, 1);
                 am = am.Substring(1, am.Length - 1);
-                string[] arr = nbs.Split(new string[] { " " },
-                                                StringSplitOptions.None);
-                string x = arr[0];
-                string x1 = x.Substring(0, 1);
-                x = x.Substring(1, x.Length - 1);
+                string[] arr = nbs.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
-                string y = arr[1];
-                string y1 = y.Substring(0, 1);
-                y = y.Substring(1, y.Length - 1);
+                if (arr.Length < 2)
+                {
+                    string x = arr[0];
+                    string x1 = x.Substring(0, 1);
+                    x = x.Substring(1, x.Length - 1);
+
+                    return m + " " + x1.ToUpper() + x + " " + ap1.ToUpper() + ap + " " + am1.ToUpper() + am + " ";
+
+                }
+                else if (arr.Length == 2)
+                {
+                    string x = arr[0];
+                    string x1 = x.Substring(0, 1);
+                    x = x.Substring(1, x.Length - 1);
+                    string y = arr[1];
+                    string y1 = y.Substring(0, 1);
+                    y = y.Substring(1, y.Length - 1);
+
+                    return m + " " + x1.ToUpper() + x + " " + y1.ToUpper() + y + " " + ap1.ToUpper() + ap + " " + am1.ToUpper() + am + " ";
+                }
+                else if (arr.Length == 3)
+                {
+                    string x = arr[0];
+                    string x1 = x.Substring(0, 1);
+                    x = x.Substring(1, x.Length - 1);
+                    string y = arr[1];
+                    string y1 = y.Substring(0, 1);
+                    y = y.Substring(1, y.Length - 1);
+                    string z = arr[2];
+                    string z1 = z.Substring(0, 1);
+                    z = z.Substring(1, z.Length - 1);
+                    return m + " " + x1.ToUpper() + x + " " + y1.ToUpper() + y + " " + z1.ToUpper() + z + " " + ap1.ToUpper() + ap + " " + am1.ToUpper() + am + " ";
 
 
-
-                return m + " " + ap1.ToUpper() + ap + " " + am1.ToUpper() + am + " " + x1.ToUpper() + x + " " + y1.ToUpper() + y;
+                }
+                else
+                {
+                    return c;
+                }
             }
             else if (genero == "M" || genero == "HOMBRE" || genero == "MASCULINO")
             {
@@ -153,18 +182,49 @@ public class Service : System.Web.Services.WebService
                     ap = ap.Substring(1, ap.Length - 1);
                     string am1 = am.Substring(0, 1);
                     am = am.Substring(1, am.Length - 1);
-                    string[] arr = nbs.Split(new string[] { " " },
-                                                StringSplitOptions.None);
-                    string x = arr[0];
-                    string x1 = x.Substring(0, 1);
-                    x = x.Substring(1, x.Length - 1);
+                    string[] arr = nbs.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
-                    string y = arr[1];
-                    string y1 = y.Substring(0, 1);
-                    y = y.Substring(1, y.Length - 1);
+                    if (arr.Length < 2)
+                    {
+                        string x = arr[0];
+                        string x1 = x.Substring(0, 1);
+                        x = x.Substring(1, x.Length - 1);
+
+                        return h + " " + x1.ToUpper() + x + " " + ap1.ToUpper() + ap + " " + am1.ToUpper() + am + " ";
+                    }
+                    else if (arr.Length == 2)
+                    {
+                        string x = arr[0];
+                        string x1 = x.Substring(0, 1);
+                        x = x.Substring(1, x.Length - 1);
+                        string y = arr[1];
+                        string y1 = y.Substring(0, 1);
+                        y = y.Substring(1, y.Length - 1);
+
+                        return h + " " + x1.ToUpper() + x + " " + y1.ToUpper() + y + " " + ap1.ToUpper() + ap + " " + am1.ToUpper() + am + " ";
+                    }
+                    else if (arr.Length == 3)
+                    {
+                        string x = arr[0];
+                        string x1 = x.Substring(0, 1);
+                        x = x.Substring(1, x.Length - 1);
+                        string y = arr[1];
+                        string y1 = y.Substring(0, 1);
+                        y = y.Substring(1, y.Length - 1);
+                        string z = arr[2];
+                        string z1 = z.Substring(0, 1);
+                        z = z.Substring(1, z.Length - 1);
+                        return h + " " + x1.ToUpper() + x + " " + y1.ToUpper() + y + " " + z1.ToUpper() + z + " " + ap1.ToUpper() + ap + " " + am1.ToUpper() + am + " ";
 
 
-                    return h + " " + ap1.ToUpper() + ap + " " + am1.ToUpper() + am + " " + x1.ToUpper() + x + " " + y1.ToUpper() + y;
+                    }
+                    else
+                    {
+                        return c;
+                    }
+
+
+
                 }
             }
             else
