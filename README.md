@@ -11,10 +11,11 @@ Webservices SOAP
 
 [Instalación y ejecución del Web Service]
 
-1.-Instalar Visual Studio Version 2015
-2.-Ejecutar Visual Studio , diriguirse a File, Open ,Website.
-3.-Seleccionar la carpeta que contiene el webservices
-4.-Seleccionar la carpeta App_Code, Service.cs
+1.- Instalar Visual Studio Version 2015
+2.- Ejecutar Visual Studio , diriguirse a File, Open, Website
+3.- Seleccionar la carpeta que contiene el webservices
+4.- Seleccionar la carpeta App_Code, Service.cs
+5.- Para probar que funcione correctamente, luego de ejecutar el programa, agregar a la URL /Service.asmx, y por último, corroborar que el puerto de esta página sea la misma que aparezca en línea 42 y línea 60 en visual studio code en el archivo views.py.
 
 Cliente
 
