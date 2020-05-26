@@ -6,36 +6,50 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>{% block title %}{% endblock title %} | Cliente de Aplicaciones Web</title>
-    <link rel="stylesheet" href="{% static 'core/bootstrap/css/bootstrap.min.css'%}">
-    <link rel="stylesheet" href="{% static 'core/fonts/fontawesome-all.min.css'%}">
-    <link rel="stylesheet" href="{% static 'core/fonts/font-awesome.min.css'%}">
-    <link rel="stylesheet" href="{% static 'core/fonts/ionicons.min.css'%}">
-    <link rel="stylesheet" href="{% static 'core/fonts/material-icons.min.css'%}">
-    <link rel="stylesheet" href="{% static 'core/fonts/simple-line-icons.min.css'%}">
-    <link rel="stylesheet" href="{% static 'core/fonts/fontawesome5-overrides.min.css'%}">
-    <link rel="stylesheet" href="{% static 'core/css/Blog---Recent-Posts-1.css'%}">
-    <link rel="stylesheet" href="{% static 'core/css/Blog---Recent-Posts.css'%}">
-    <link rel="stylesheet" href="{% static 'core/css/Contact-Form-Clean.css'%}">
-    <link rel="stylesheet" href="{% static 'core/css/Features-Blue.css'%}">
-    <link rel="stylesheet" href="{% static 'core/css/Features-Boxed.css'%}">
-    <link rel="stylesheet" href="{% static 'core/css/Footer-Basic.css'%}">
-    <link rel="stylesheet" href="{% static 'core/css/Navigation-with-Button.css'%}">
-    <link rel="stylesheet" href="{% static 'core/css/styles.css'%}" type="text/css">
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/5e1b5630f8.js" crossorigin="anonymous"></script>
 </head>
 
-<body class="text-center"><a href="{% url 'home' %}"><h1>Cliente Rest/Soap</a>
-    <h1>Menú principal Servicios Web Rest/Soap</h1>
-    <p>Porfavor, elige que aplicación web deseas deseas consumir:</p>
-    <hr></hr>
-    <a href={% url 'restclient' %}><p>Cliente rest</p></a>
-    <a href={% url 'soapclient' %}><p>Cliente soap</p></a>
-    <hr></hr>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'home' %}">Cliente RestSoap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'restclient' %}">Cliente Rest <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'soapclient' %}">Cliente Soap</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
     {% block content %}
+    <div class="card border-0 rounded-0">
+    <img class="card-img" src="https://www.cosglobalservices.com/wp-content/uploads/2017/06/fondo-faja-central-servicio-puesto-trabajo.jpg">
+    <div class="card-img-overlay row justify-content-center">
+        <div class="align-self-center">
+            <div class="col">
+                <div>
+                    <h2 style="color:white;">Bienvenido a nuestro trabajo de redes (Aplicaciones Rest y Soap)</h2>
+                </div>
+                <div>
+                <a href="{% url 'restclient' %}" class="btn btn-outline-light rounded-pill pl-5 pr-5">Rest</a>
+                <a href="{% url 'soapclient' %}" class="btn btn-outline-light rounded-pill pl-5 pr-5">Soap</a>
+                </div>
+            </div>
+        </div>
+    </div>
     {% endblock %}
     </div>
     <script src="{% static 'core/js/jquery.min.js'%}"></script>
     <script src="{% static 'core/bootstrap/js/bootstrap.min.js'%}"></script>
 </body>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </html>

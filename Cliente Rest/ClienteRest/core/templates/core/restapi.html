@@ -2,6 +2,8 @@
 
 {% block title %}Aplicación Rest{% endblock title %}
 {% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/5e1b5630f8.js" crossorigin="anonymous"></script>
 <script>
 function checkRut(rut) {
     // Despejar Puntos
@@ -26,25 +28,86 @@ function checkRut(rut) {
 <h1>Aplicación Rest</h1>
     <form action="" method="POST">
     {% csrf_token %}
-        <p>Ingrese rut: <input type="text" name="rut" id='rut' required oninput="checkRut(this)" placeholder="Ingrese Rut"></p>
-        <input type="submit" value="Enviar">
+    <div class="col-3">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="rut">Rut:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Ingrese rut" aria-label="rut" aria-describedby="basic-addon1" name="rut" id="rut" required oninput="checkRut(this)">
+            <button type="submit" class="btn btn-primary" style="margin-left: 15px">Consultar</button>
+        </div>
+    </div>
+    <div class="col-7">
+        {% if rutvalido == "false" %}
+        <div class="alert alert-danger col-4 " >
+            <div class="row">
+                <i class="fas fa-user-times" style="padding-top: 3px; padding-right: 3px;"></i> <b>El RUT ingresado es invalido.</b>
+            </div>
+        </div>
+        {% elif rutvalido == "true" %}
+        <div class="alert alert-success col-4 " >
+            <div class="row">
+                <i class="fas fa-user-check" style="padding-top: 3px; padding-right: 3px;"></i> <b>El RUT ingresado es valido.</b>
+            </div>
+        </div>
+        {% endif %}
+    </div>
     </form>
-    {% if rutvalido == "true" %}
-        <h1>El rut ingresado es valido</h1>
-    {% elif rutvalido == "false" %}
-        <h1>El rut ingresado es invalido</h1>
-    {% endif %}
-    
+
+    <hr>
     <form action="" method="POST">
     {% csrf_token %}
-        <p>Nombres: <input type="text" name="nombres" id='nombres' placeholder="Ingrese Nombres" required></p>
-        <p>Apellido Paterno: <input type="text" name="apellidop" id='apellidop' placeholder="Ingrese Apellido Paterno" required></p>
-        <p>Apellido Materno: <input type="text" name="apellidom" id='apellidom' placeholder="Ingrese Apellido Materno" required></p>
-        <p>Sexo:<select id="sexo" name="sexo"><option value="M">Masculino</option><option value="F">Femenino</option></select></p>
-        <input type="submit" value="Enviar">
+    <div class="col-5">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="nombres">Nombres:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Ingrese nombres" aria-label="nombres" aria-describedby="basic-addon1" name="nombres" id="nombres">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="apellidop">Apellido Paterno:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Ingrese Apellido Paterno" aria-label="apellidop" aria-describedby="basic-addon1" name="apellidop" id="apellidop">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="apellidom">Apellido Materno:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Ingrese Apellido Materno" aria-label="apellidom" aria-describedby="basic-addon1" name="apellidom" id="apellidom">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Sexo</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" name="sexo" id="sexo">
+                <option value="M">Hombre</option>
+                <option value="F">Mujer</option>
+            </select>
+        </div>
+         <button type="submit" class="btn btn-primary" style="margin-left: 15px">Consultar</button>
+    </div>
     
     </form>
     {% if saludo %}
-    <h1>{{saludo}}</h1>
+    <div class="container">
+        <div class="alert alert-info border rounded-0" style="padding: 0px;">
+            <div class="row">
+                <div class="col-4" style="padding-left: 0px; padding-right: 0px;">
+                    {% if sexo == 'M' %}<img class="img-fluid" src="https://i.pinimg.com/564x/45/6c/1a/456c1a72d0b41ce2fcb265e52ed7a8c4.jpg">{% endif %}
+                    {% if sexo == 'F' %}<img class="img-fluid" src="https://i.pinimg.com/564x/7e/77/af/7e77af585123b0465677af21d5fc25b3.jpg">{% endif %}
+                </div>
+                <div class="col-8" style="padding-left: 45px; padding-top: 15px;">
+                    <div class="row">
+                        <h1>{{saludo}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {% endif %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 {% endblock content %}

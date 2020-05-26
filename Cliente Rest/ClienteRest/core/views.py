@@ -29,6 +29,7 @@ def RestClient(request):
             data= response.json()
             return render(request, "core/restapi.html",{
                 'saludo':data['saludo'],
+                'sexo': sexo,
             })
         else:
             return render(request, "core/restapi.html")
@@ -66,7 +67,8 @@ def SoapClient(request):
         if(response.status_code==200):  
             print(response_content)
             return render(request, "core/apisoap.html",{
-                'saludo':response_content
+                'saludo':response_content,
+                'sexo': sexo,
             })
         else:
             return render(request, "core/apisoap.html")
