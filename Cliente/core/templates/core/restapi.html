@@ -1,0 +1,150 @@
+{% extends 'core/home.html' %}
+
+{% block title %}Aplicación Rest{% endblock title %}
+{% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/5e1b5630f8.js" crossorigin="anonymous"></script>
+<script>
+function checkRut(rut) {
+    // Despejar Puntos
+    var valor = rut.value.replace('.','');
+    // Despejar Guión
+    valor = valor.replace('-','');
+    
+    // Aislar Cuerpo y Dígito Verificador
+    cuerpo = valor.slice(0,-1);
+    dv = valor.slice(-1).toUpperCase();
+    
+    // Formatear RUN
+    rut.value = cuerpo + '-'+ dv
+    
+    // Si no cumple con el mínimo ej. (n.nnn.nnn)
+    if(cuerpo.length < 7) { rut.setCustomValidity("RUT Incompleto"); return false;}
+    
+    // Si todo sale bien, eliminar errores (decretar que es válido)
+    rut.setCustomValidity('');
+}
+</script>
+
+<div class="container-fluid" style="background-color: #f2f2f2; padding-top: 30px; padding-bottom: 30px;">
+        <div class="row" style="margin-bottom:15px">
+            <div class="col-2"></div>
+            <div class="col-4 border rounded-0" style="border-color: #d6d6d6; border-style: solid; border-radius: 1px; background-color: #ffffff; padding-top: 30px; padding-bottom: 30px;">
+                <section >
+                    <header>
+                        <h3 style="color:#1E8A84; font-family: 'Roboto Slab';">Aplicación Rest</h3>
+                    </header>
+                </section>
+            </div>
+            <div class="col-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-4 border rounded-0" style="border-color: #d6d6d6; border-style: solid; border-radius: 1px; background-color: #ffffff; padding-top: 30px; padding-bottom: 30px;">
+                <section >
+                    <header>
+                        <h3 style="color:#1E8A84; font-family: 'Roboto Slab';">Validación de RUT</h3>
+                    </header>
+                    <div style="color: #6b6b6b">
+                        <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="col-8">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="rut">Rut:</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Ingrese rut" aria-label="rut" aria-describedby="basic-addon1" name="rut" id="rut" required oninput="checkRut(this)">
+                                <button type="submit" class="btn btn-primary" style="margin-left: 15px">Consultar</button>
+                            </div>
+                        </div>
+                        <div class="col-7" style="margin-top:15px">
+                            {% if rutvalido == "false" %}
+                            <div class="alert alert-danger col-12 " >
+                                <div class="row">
+                                    <i class="fas fa-user-times" style="padding-top: 3px; padding-right: 3px;"></i> <b>El RUT ingresado es invalido.</b>
+                                </div>
+                            </div>
+                            {% elif rutvalido == "true" %}
+                            <div class="alert alert-success col-12 " >
+                                <div class="row">
+                                    <i class="fas fa-user-check" style="padding-top: 3px; padding-right: 3px;"></i> <b>El RUT ingresado es valido.</b>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+            <div class="col-3"></div>
+        </div>
+
+        <div class="row" style="margin-top: 15px;">
+            <div class="col-2"></div>
+            <div class="col-4 border rounded-0" style="border-color: #d6d6d6; border-style: solid; border-radius: 1px; background-color: #ffffff; padding-top: 30px; padding-bottom: 30px;">
+                <section >
+                    <header>
+                        <h3 style="color:#1E8A84; font-family: 'Roboto Slab';">Saludo Personalizado</h3>
+                    </header>
+                    <div style="color: #6b6b6b">
+                        <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="col-9">
+                            <div class="input-group" style="padding-top:10px">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="nombres">Nombres:</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Ingrese nombres" aria-label="nombres" aria-describedby="basic-addon1" name="nombres" id="nombres">
+                            </div>
+                            <div class="input-group" style="padding-top:10px">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="apellidop">Apellido Paterno:</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Ingrese Apellido Paterno" aria-label="apellidop" aria-describedby="basic-addon1" name="apellidop" id="apellidop">
+                            </div>
+                            <div class="input-group" style="padding-top:10px">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="apellidom">Apellido Materno:</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Ingrese Apellido Materno" aria-label="apellidom" aria-describedby="basic-addon1" name="apellidom" id="apellidom">
+                            </div>
+                            <div class="input-group" style="padding-top:10px">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect01">Sexo</label>
+                                </div>
+                                <select class="custom-select" id="inputGroupSelect01" name="sexo" id="sexo">
+                                    <option value="M">Hombre</option>
+                                    <option value="F">Mujer</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="margin-left: 15px; margin-top:10px">Consultar</button>
+                        </div>
+                        
+                        </form>
+                        {% if saludo %}
+                        <div class="container">
+                            <div class="alert border rounded-0" style="padding: 0px; margin-top:15px; {% if sexo == 'M' %}background-color:#4E7299{% elif sexo == 'F' %}background-color:#DC85E8{% endif %}">
+                                <div class="row">
+                                    <div class="col-4" style="padding-left: 0px; padding-right: 0px;">
+                                        {% if sexo == 'M' %}<img class="img-fluid" src="https://i.pinimg.com/564x/45/6c/1a/456c1a72d0b41ce2fcb265e52ed7a8c4.jpg">{% endif %}
+                                        {% if sexo == 'F' %}<img class="img-fluid" src="https://i.pinimg.com/564x/7e/77/af/7e77af585123b0465677af21d5fc25b3.jpg">{% endif %}
+                                    </div>
+                                    <div class="col-8" style="padding-left: 45px; padding-top: 15px; margin-top:15px">
+                                        <div class="row">
+                                            <h3 style="color:#ffffff">{{saludo}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </section>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+{% endblock content %}

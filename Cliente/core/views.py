@@ -45,7 +45,7 @@ def SoapClient(request):
     if request.POST.get('rut'):
         informacion=request.POST.get('rut')
         rut=str(informacion)
-        client= Client('https://localhost:44394/Service.asmx?wsdl', transport=transport)
+        client= Client('http://localhost:8181/WebService1.asmx?wsdl')
         response_content=client.service.Verificacion(rut)
         with client.settings(raw_response=True):
             response=client.service.Verificacion(rut)
@@ -63,7 +63,7 @@ def SoapClient(request):
         apellidopat=str(request.POST.get('apellidop'))
         apellidomat=str(request.POST.get('apellidom'))
         sexo=str(request.POST.get('sexo'))
-        client= Client('https://localhost:44394/Service.asmx?wsdl')
+        client= Client('http://localhost:8181/WebService1.asmx?wsdl')
         response_content= client.service.Saludos(apellidopat,apellidomat,nombres,sexo)
         with client.settings(raw_response=True):
             response=client.service.Saludos(apellidopat,apellidomat,nombres,sexo)

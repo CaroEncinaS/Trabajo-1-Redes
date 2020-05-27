@@ -6,14 +6,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>{% block title %}{% endblock title %} | Cliente de Aplicaciones Web</title>
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/5e1b5630f8.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'home' %}">Cliente RestSoap</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Cliente Rest/Soap</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,7 +35,7 @@
         <div class="align-self-center">
             <div class="col">
                 <div>
-                    <h2 style="color:white;">Bienvenido a nuestro trabajo de redes (Aplicaciones Rest y Soap)</h2>
+                    <h2 style="color:white; font-family: 'Roboto Slab';">Bienvenido a nuestro trabajo de redes (Aplicaciones Rest y Soap)</h2>
                 </div>
                 <div>
                 <a href="{% url 'restclient' %}" class="btn btn-outline-light rounded-pill pl-5 pr-5">Rest</a>
