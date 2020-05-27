@@ -1,6 +1,8 @@
 from django.shortcuts import render, HttpResponse
 import requests, urllib, json
 from zeep import Client
+from requests import Session
+from zeep.transports import Transport
 
 # Create your views here.
 
@@ -37,11 +39,14 @@ def RestClient(request):
         return render(request, "core/restapi.html")
 
 def SoapClient(request):
+    session = Session()
+    session.verify = False
+    transport = Transport(session=session)
     if request.POST.get('rut'):
         informacion=request.POST.get('rut')
         rut=str(informacion)
-        client= Client('http://localhost:49239/Service.asmx?wsdl')
-        response_content=response=client.service.Verificacion(rut)
+        client= Client('https://localhost:44394/Service.asmx?wsdl', transport=transport)
+        response_content=client.service.Verificacion(rut)
         with client.settings(raw_response=True):
             response=client.service.Verificacion(rut)
             assert response.status_code==200
@@ -58,7 +63,7 @@ def SoapClient(request):
         apellidopat=str(request.POST.get('apellidop'))
         apellidomat=str(request.POST.get('apellidom'))
         sexo=str(request.POST.get('sexo'))
-        client= Client('http://localhost:49239/Service.asmx?wsdl')
+        client= Client('https://localhost:44394/Service.asmx?wsdl')
         response_content= client.service.Saludos(apellidopat,apellidomat,nombres,sexo)
         with client.settings(raw_response=True):
             response=client.service.Saludos(apellidopat,apellidomat,nombres,sexo)

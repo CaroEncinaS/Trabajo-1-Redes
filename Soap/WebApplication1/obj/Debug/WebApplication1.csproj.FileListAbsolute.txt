@@ -1,0 +1,13 @@
+C:\Users\Mathias\Desktop\2\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Mathias\Desktop\2\WebApplication1\WebApplication1\bin\WebApplication1.dll.config
+C:\Users\Mathias\Desktop\2\WebApplication1\WebApplication1\bin\WebApplication1.dll
+C:\Users\Mathias\Desktop\2\WebApplication1\WebApplication1\bin\WebApplication1.pdb
+C:\Users\Mathias\Desktop\2\WebApplication1\WebApplication1\obj\Debug\WebApplication1.dll
+C:\Users\Mathias\Desktop\2\WebApplication1\WebApplication1\obj\Debug\WebApplication1.pdb
+C:\Users\Bruggerz\Desktop\WebApplication1\WebApplication1\bin\WebApplication1.dll.config
+C:\Users\Bruggerz\Desktop\WebApplication1\WebApplication1\bin\WebApplication1.dll
+C:\Users\Bruggerz\Desktop\WebApplication1\WebApplication1\bin\WebApplication1.pdb
+C:\Users\Bruggerz\Desktop\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csprojAssemblyReference.cache
+C:\Users\Bruggerz\Desktop\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.CoreCompileInputs.cache
+C:\Users\Bruggerz\Desktop\WebApplication1\WebApplication1\obj\Debug\WebApplication1.dll
+C:\Users\Bruggerz\Desktop\WebApplication1\WebApplication1\obj\Debug\WebApplication1.pdb
